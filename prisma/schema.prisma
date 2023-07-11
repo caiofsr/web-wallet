@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  name    String
+  wallets Wallet[]
+}
+
+model Wallet {
+  id          Int          @id @default(autoincrement())
+  name        String
+  userId      Int
+  user        User         @relation(fields: [userId], references: [id])
+  walletCoins WalletCoin[]
+}
+
+model Coin {
+  id          Int          @id @default(autoincrement())
+  name        String
+  token       String
+  walletCoins WalletCoin[]
+}
+
+model WalletCoin {
+  id       Int     @id @default(autoincrement())
+  balance  Float
+  walletId Int
+  coinId   Int
+  wallet   Wallet  @relation(fields: [walletId], references: [id])
+  coin     Coin    @relation(fields: [coinId], references: [id])
+  Offer    Offer[]
+
+  @@unique([walletId, coinId])
+}
+
+model Offer {
+  id           Int        @id @default(autoincrement())
+  quantity     Int
+  walletCoinId Int
+  walletCoin   WalletCoin @relation(fields: [walletCoinId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
+
+  @@unique([walletCoinId])
+}
