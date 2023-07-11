@@ -6,6 +6,8 @@ import {
 import { PrismaService } from '../prisma.service';
 import { OfferRepository } from '@application/repositories/offer-repository';
 import { Offer } from '@application/entities/offer/offer';
+import { PrismaOfferMapper } from '@infra/database/mappers/prisma-offer-mapper';
+import { endOfDay, startOfDay } from 'date-fns';
 
 @Injectable()
 export class PrismaOfferRepository implements OfferRepository {
@@ -13,6 +15,26 @@ export class PrismaOfferRepository implements OfferRepository {
 
   create(offer: Offer): Promise<Offer> {
     throw new Error('Method not implemented.');
+  }
+
+  async findAll(page: number, limit: number): Promise<Offer[]> {
+    const startDate = startOfDay(new Date());
+    const endDate = endOfDay(new Date());
+
+    const offers = await this.prismaService.offer.findMany({
+      skip: (page - 1) * limit,
+      take: limit,
+      where: {
+        deletedAt: null,
+        createdAt: {
+          gte: startDate,
+          lt: endDate,
+        },
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return PrismaOfferMapper.toDomain(offers);
   }
 
   async delete(id: number, userId: number): Promise<void> {

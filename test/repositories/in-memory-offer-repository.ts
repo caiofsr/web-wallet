@@ -12,6 +12,12 @@ export class InMemoryOfferRepository implements OfferRepository {
     }
   }
 
+  async findAll(page: number, limit: number): Promise<Offer[]> {
+    return Promise.resolve(
+      this.offers.slice((page - 1) * limit, (page - 1) * limit + limit),
+    );
+  }
+
   async create(offer: Offer): Promise<Offer> {
     this.offers.push(offer);
 

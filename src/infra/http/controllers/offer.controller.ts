@@ -1,13 +1,22 @@
 import { Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { DeleteOfferUseCase } from '@application/use-cases/offer/delete-offer';
+import { GetOffersUseCase } from '@application/use-cases/offer/get-offers';
+import { OfferViewModel } from '@infra/database/prisma/view-models/offer-view-model';
 
 @Controller('offers')
 export class OffersController {
-  constructor(private deleteOfferUseCase: DeleteOfferUseCase) {}
+  constructor(
+    private deleteOfferUseCase: DeleteOfferUseCase,
+    private getOffersUseCase: GetOffersUseCase,
+  ) {}
 
   @Get('')
-  async getOffers() {
-    return;
+  async getOffers(@Query('page') page: string, @Query('limit') limit: string) {
+    return {
+      data: OfferViewModel.toHttp(
+        await this.getOffersUseCase.execute(Number(page), Number(limit)),
+      ),
+    };
   }
 
   @Post('')
