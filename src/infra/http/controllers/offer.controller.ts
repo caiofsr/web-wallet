@@ -24,7 +24,7 @@ export class OffersController {
   @Get('')
   async getOffers(@Query('page') page: string, @Query('limit') limit: string) {
     return {
-      data: OfferViewModel.toHttpArray(
+      data: OfferViewModel.toHttpArrayWithCoin(
         await this.getOffersUseCase.execute(Number(page), Number(limit)),
       ),
     };

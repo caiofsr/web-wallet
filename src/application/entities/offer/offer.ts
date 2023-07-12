@@ -3,12 +3,16 @@ import { Replace } from '@helpers/replace';
 export interface OfferProps {
   quantity: number;
   walletCoinId: number;
+  coinName: string;
+  coinToken: string;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
 }
 
-interface Timestamp {
+interface Optional {
+  coinToken?: string;
+  coinName?: string;
   createdAt?: Date;
   updatedAt?: Date;
   deletedAt?: Date;
@@ -16,7 +20,7 @@ interface Timestamp {
 
 export class Offer {
   constructor(
-    private props: Replace<OfferProps, Timestamp>,
+    private props: Replace<OfferProps, Optional>,
     private _id?: number,
   ) {
     this.props = {
@@ -45,6 +49,22 @@ export class Offer {
 
   public set walletCoinId(walletCoinId: number) {
     this.props.walletCoinId = walletCoinId;
+  }
+
+  public get coinName(): string {
+    return this.props.coinName;
+  }
+
+  public set coinName(coinName: string) {
+    this.props.coinName = coinName;
+  }
+
+  public get coinToken(): string {
+    return this.props.coinToken;
+  }
+
+  public set coinToken(coinToken: string) {
+    this.props.coinToken = coinToken;
   }
 
   public get createdAt(): Date {

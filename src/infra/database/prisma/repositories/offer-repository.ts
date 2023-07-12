@@ -73,6 +73,13 @@ export class PrismaOfferRepository implements OfferRepository {
         },
       },
       orderBy: { createdAt: 'desc' },
+      include: {
+        walletCoin: {
+          include: {
+            coin: true,
+          },
+        },
+      },
     });
 
     return PrismaOfferMapper.toDomainArray(offers);

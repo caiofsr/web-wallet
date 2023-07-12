@@ -1,6 +1,14 @@
 import { Offer } from '@application/entities/offer/offer';
 import { Offer as RawPrismaOffer } from '@prisma/client';
 
+export interface RawPrismaOfferWithWalletCoin extends RawPrismaOffer {
+  walletCoin: {
+    coin: {
+      name: string;
+      token: string;
+    };
+  };
+}
 export class PrismaOfferMapper {
   static toPrisma(offer: Offer) {
     return {
@@ -15,7 +23,7 @@ export class PrismaOfferMapper {
     };
   }
 
-  static toDomainArray(rawOffers: RawPrismaOffer[]) {
+  static toDomainArray(rawOffers: RawPrismaOfferWithWalletCoin[]) {
     return rawOffers.map(
       (rawOffer) =>
         new Offer(
@@ -25,6 +33,8 @@ export class PrismaOfferMapper {
             createdAt: rawOffer.createdAt,
             updatedAt: rawOffer.updatedAt,
             deletedAt: rawOffer.deletedAt,
+            coinName: rawOffer.walletCoin.coin.name,
+            coinToken: rawOffer.walletCoin.coin.token,
           },
           rawOffer.id,
         ),

@@ -1,10 +1,12 @@
 import { Offer } from '@application/entities/offer/offer';
 
 export class OfferViewModel {
-  static toHttpArray(offers: Offer[]) {
+  static toHttpArrayWithCoin(offers: Offer[]) {
     return offers.map((offer) => ({
       id: offer.id,
       quantity: offer.quantity,
+      coinName: offer.coinName,
+      coinToken: offer.coinToken,
       createdAt: offer.createdAt,
       updatedAt: offer.updatedAt,
     }));
