@@ -13,8 +13,49 @@ import { endOfDay, startOfDay } from 'date-fns';
 export class PrismaOfferRepository implements OfferRepository {
   constructor(private prismaService: PrismaService) {}
 
-  create(offer: Offer): Promise<Offer> {
-    throw new Error('Method not implemented.');
+  async getCountOffers(walletCoinId: number): Promise<number> {
+    const startDate = startOfDay(new Date());
+    const endDate = endOfDay(new Date());
+
+    const walletCoin = await this.prismaService.walletCoin.findUnique({
+      where: { id: walletCoinId },
+      select: {
+        wallet: {
+          select: {
+            userId: true,
+          },
+        },
+      },
+    });
+
+    const count = await this.prismaService.offer.count({
+      where: {
+        walletCoin: {
+          wallet: {
+            userId: walletCoin.wallet.userId,
+          },
+        },
+        createdAt: {
+          gte: startDate,
+          lt: endDate,
+        },
+      },
+    });
+
+    return count;
+  }
+
+  async create(offer: Offer): Promise<Offer> {
+    const { offer: raw, walletCoinId } = PrismaOfferMapper.toPrisma(offer);
+
+    const offerPrisma = await this.prismaService.offer.create({
+      data: {
+        ...raw,
+        walletCoinId,
+      },
+    });
+
+    return PrismaOfferMapper.toDomain(offerPrisma);
   }
 
   async findAll(page: number, limit: number): Promise<Offer[]> {
@@ -34,7 +75,7 @@ export class PrismaOfferRepository implements OfferRepository {
       orderBy: { createdAt: 'desc' },
     });
 
-    return PrismaOfferMapper.toDomain(offers);
+    return PrismaOfferMapper.toDomainArray(offers);
   }
 
   async delete(id: number, userId: number): Promise<void> {

@@ -15,7 +15,7 @@ export class PrismaOfferMapper {
     };
   }
 
-  static toDomain(rawOffers: RawPrismaOffer[]) {
+  static toDomainArray(rawOffers: RawPrismaOffer[]) {
     return rawOffers.map(
       (rawOffer) =>
         new Offer(
@@ -28,6 +28,19 @@ export class PrismaOfferMapper {
           },
           rawOffer.id,
         ),
+    );
+  }
+
+  static toDomain(rawOffer: RawPrismaOffer) {
+    return new Offer(
+      {
+        quantity: rawOffer.quantity,
+        walletCoinId: rawOffer.walletCoinId,
+        createdAt: rawOffer.createdAt,
+        updatedAt: rawOffer.updatedAt,
+        deletedAt: rawOffer.deletedAt,
+      },
+      rawOffer.id,
     );
   }
 }
