@@ -1,33 +1,3 @@
-// const prisma = new PrismaClient();
-// async function main() {
-//   const alice = await prisma.user.upsert({
-//     // where: { name: 'alice@prisma.io' },
-//     update: {},
-//     create: {
-//       email: 'alice@prisma.io',
-//       name: 'Alice',
-//       posts: {
-//         create: {
-//           title: 'Check out Prisma with Next.js',
-//           content: 'https://www.prisma.io/nextjs',
-//           published: true,
-//         },
-//       },
-//     },
-//   });
-
-//   console.log({ alice });
-// }
-// main()
-//   .then(async () => {
-//     await prisma.$disconnect();
-//   })
-//   .catch(async (e) => {
-//     console.error(e);
-//     await prisma.$disconnect();
-//     process.exit(1);
-//   });
-
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -101,6 +71,36 @@ async function seed() {
       },
     ],
     skipDuplicates: true,
+  });
+
+  // Criação de ofertas
+  await prisma.offer.createMany({
+    data: [
+      {
+        walletCoinId: 1,
+        quantity: 1,
+      },
+      {
+        walletCoinId: 2,
+        quantity: 2,
+      },
+      {
+        walletCoinId: 3,
+        quantity: 3,
+      },
+      {
+        walletCoinId: 4,
+        quantity: 4,
+      },
+      {
+        walletCoinId: 1,
+        quantity: 5,
+      },
+      {
+        walletCoinId: 3,
+        quantity: 6,
+      },
+    ],
   });
 }
 
