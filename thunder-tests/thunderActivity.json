@@ -1,0 +1,194 @@
+[
+    {
+        "_id": "32e0d944-011a-4e2e-841f-328cfd2b5d4b",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers/1?userId=1",
+        "url": "http://localhost:3333/offers/1?userId=2",
+        "method": "DELETE",
+        "sortNum": 0,
+        "created": "2023-07-11T21:07:01.460Z",
+        "modified": "2023-07-11T23:12:30.461Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "userId",
+                "value": "2",
+                "isPath": false
+            }
+        ],
+        "tests": []
+    },
+    {
+        "_id": "c3ad1b34-b42c-4264-9a2e-5581c3ff272c",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://localhost:3333/offers",
+        "url": "https://localhost:3333/offers",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-11T22:48:01.040Z",
+        "modified": "2023-07-11T22:48:01.040Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "fc3d6bca-a191-4b55-b74e-a845d4135d7a",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers",
+        "url": "http://localhost:3333/offers",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-11T22:48:08.151Z",
+        "modified": "2023-07-11T22:48:08.151Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+    },
+    {
+        "_id": "e3670018-634c-449f-bdc3-25841801f3c9",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers?page=1&limit=10",
+        "url": "http://localhost:3333/offers?page=1&limit=10",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-11T22:48:49.345Z",
+        "modified": "2023-07-11T22:48:49.345Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "page",
+                "value": "1",
+                "isPath": false
+            },
+            {
+                "name": "limit",
+                "value": "10",
+                "isPath": false
+            }
+        ],
+        "tests": []
+    },
+    {
+        "_id": "72cf5c80-7857-4968-9255-1a09f153afa8",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers?page=2&limit=10",
+        "url": "http://localhost:3333/offers?page=2&limit=10",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-11T23:09:46.724Z",
+        "modified": "2023-07-11T23:09:46.724Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "page",
+                "value": "2",
+                "isPath": false
+            },
+            {
+                "name": "limit",
+                "value": "10",
+                "isPath": false
+            }
+        ],
+        "tests": []
+    },
+    {
+        "_id": "e28d76a3-20c5-4488-b53c-87ee5f0b15e3",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers?page=1&limit=1",
+        "url": "http://localhost:3333/offers?page=1&limit=1",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-11T23:09:54.793Z",
+        "modified": "2023-07-11T23:09:54.793Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "page",
+                "value": "1",
+                "isPath": false
+            },
+            {
+                "name": "limit",
+                "value": "1",
+                "isPath": false
+            }
+        ],
+        "tests": []
+    },
+    {
+        "_id": "a257a1bb-f2fc-4493-9b32-5b9802c4446d",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers?page=2&limit=1",
+        "url": "http://localhost:3333/offers?page=1&limit=10",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-11T23:10:00.185Z",
+        "modified": "2023-07-12T22:58:59.136Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "page",
+                "value": "1",
+                "isPath": false
+            },
+            {
+                "name": "limit",
+                "value": "10",
+                "isPath": false
+            }
+        ],
+        "tests": []
+    },
+    {
+        "_id": "40189ec8-f5ee-4a77-bd99-ea81ba210b11",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://localhost:3333/offers",
+        "url": "https://localhost:3333/offers",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-12T00:19:21.826Z",
+        "modified": "2023-07-12T00:19:21.826Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"quantity\": 1,\n  \"walletCoinId\": 1\n}",
+            "form": []
+        },
+        "tests": []
+    },
+    {
+        "_id": "80e87a91-1d85-4b93-add1-6d0e336583f6",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3333/offers",
+        "url": "http://localhost:3333/offers?userId=1",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-12T00:19:27.611Z",
+        "modified": "2023-07-12T23:15:07.502Z",
+        "headers": [],
+        "params": [
+            {
+                "name": "userId",
+                "value": "1",
+                "isPath": false
+            }
+        ],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"quantity\": 1,\n  \"walletCoinId\": \"um\"\n}",
+            "form": []
+        },
+        "tests": []
+    }
+]

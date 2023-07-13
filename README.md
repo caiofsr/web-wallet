@@ -94,8 +94,8 @@ npm run start:dev
   * Acceptance body
   ```json
   {
-    quantity: number,
-    walletCoinId: number
+    "quantity": number,
+    "walletCoinId": number
   }
   ```
 * `[GET]` - http://localhost:{your_port}/offers?page={actual_page}&limit={limit_offers_per_page}
