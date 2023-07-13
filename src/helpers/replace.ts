@@ -1,7 +1,7 @@
 /**
  * Updates the constraints of a forwarded properties
  * @example
- * Replace<OperatorProps, { createdAt?: Date; updatedAt?: Date }>
+ * Replace<WalletProps, { createdAt?: Date; updatedAt?: Date }>
  *
  * Originally the properties passed were required in the interface
  */

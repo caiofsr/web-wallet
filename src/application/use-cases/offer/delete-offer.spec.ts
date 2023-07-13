@@ -9,9 +9,7 @@ describe('Delete Offer Use Case', () => {
   const offerRepository = new InMemoryOfferRepository();
 
   beforeAll(async () => {
-    offer = await offerRepository.create(
-      new Offer({ quantity: 1, walletCoinId: 1 }),
-    );
+    offer = await offerRepository.create(new Offer({ quantity: 1, walletCoinId: 1 }));
 
     deleteOfferUseCase = new DeleteOfferUseCase(offerRepository);
   });

@@ -1,6 +1,6 @@
+import { GetOffersUseCase } from './get-offers';
 import { Offer } from '../../entities/offer/offer';
 import { InMemoryOfferRepository } from '../../../../test/repositories/in-memory-offer-repository';
-import { GetOffersUseCase } from './get-offers';
 
 describe('Get Offers Use Case', () => {
   let getOffersUseCase: GetOffersUseCase;

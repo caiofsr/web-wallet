@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { DeleteOfferUseCase } from '@application/use-cases/offer/delete-offer';
 import { GetOffersUseCase } from '@application/use-cases/offer/get-offers';
 import { OfferViewModel } from '@infra/database/prisma/view-models/offer-view-model';
@@ -24,24 +16,14 @@ export class OffersController {
   @Get('')
   async getOffers(@Query('page') page: string, @Query('limit') limit: string) {
     return {
-      data: OfferViewModel.toHttpArrayWithCoin(
-        await this.getOffersUseCase.execute(Number(page), Number(limit)),
-      ),
+      data: OfferViewModel.toHttpArrayWithCoin(await this.getOffersUseCase.execute(Number(page), Number(limit))),
     };
   }
 
   @Post('')
-  async createOffer(
-    @Body() { quantity, walletCoinId }: CreateOfferBody,
-    @Query('userId') userId: string,
-  ) {
+  async createOffer(@Body() { quantity, walletCoinId }: CreateOfferBody, @Query('userId') userId: string) {
     return {
-      data: OfferViewModel.toHttp(
-        await this.createOfferUseCase.execute(
-          { quantity, walletCoinId },
-          Number(userId),
-        ),
-      ),
+      data: OfferViewModel.toHttp(await this.createOfferUseCase.execute({ quantity, walletCoinId }, Number(userId))),
     };
   }
 
