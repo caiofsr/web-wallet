@@ -85,7 +85,7 @@ npm run start:dev
 
 7. Para rodar os testes
   ```sh
-  npm run tests
+  npm run test
   ```
 
 ## Endpoints
