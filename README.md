@@ -98,7 +98,7 @@ npm run start:dev
     "walletCoinId": integer
   }
   ```
-* `[GET]` - http://localhost:{your_port}/offers?page={actual_page}&limit={limit_offers_per_page}
+* `[GET]` - http://localhost:{your_port}/offers?page={current_page}&limit={limit_offers_per_page}
 
 * `[DELETE]` http://localhost:{your_port}/offers/{offer_id}?userId={user_id}
 
