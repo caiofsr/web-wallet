@@ -1,73 +1,118 @@
+<br/>
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <h3 align="center">Web Wallet</h3>
+
+  <p align="center">
+    <a href="https://github.com/caiofsr/web-wallet"><strong>Explore the docs »</strong></a>
+    <br/>
+    <br/>
+  </p>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Table Of Contents
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Table Of Contents](#table-of-contents)
+- [Built With](#built-with)
+  - [Data Modelling](#data-modelling)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Endpoints](#endpoints)
+- [Author](#author)
+- [Future Improvements](#future-improvements)
 
-## Installation
+## Built With
 
-```bash
-$ npm install
+Esse projeto foi feito com Node.js, NestJS, prisma e postgres. Utilizando da Arquitetura Limpa as pastas de `src` representam algumas camadas utilizadas nesse projeto.
+
+### Data Modelling
+<img src="images/data-modeling.png" alt="Logo">
+
+## Getting Started
+
+Para rodar o projeto localmente siga os próximos passos.
+
+### Prerequisites
+
+* npm
+
+```sh
+npm install npm@latest -g
 ```
 
-## Running the app
+* docker-compose (opcional)
+Você pode usar uma instância do postgres já instalada no seu computador, só alterar as credencias nos arquivos locais
 
-```bash
-# development
-$ npm run start
+### Installation
 
-# watch mode
-$ npm run start:dev
+1. Instale os pacotes do npm
 
-# production mode
-$ npm run start:prod
+```sh
+npm install
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+2. Altere as variáveis de ambiente no arquivo `.env`. OBS: `DATABASE_URL` é o mais importante pois o prisma utiliza. As variáveis que começam com `DB_` são utilizada para criação da instância no docker com o docker-compose.
+```ENV
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+PORT=
+DATABASE_URL=
 ```
 
-## Support
+3. Inicie o banco de dados com docker-compose
+```sh
+docker-compose up -d
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+4. Execute as migrations pelo prisma
+```sh
+npx prisma migrate dev
+```
 
-## Stay in touch
+5. Após as migrations execute o seed do banco de dados
+```sh
+npx prisma db seed
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+6. Por fim inicie o servidor da API
 
-## License
+```sh
+npm run start:dev
+```
 
-Nest is [MIT licensed](LICENSE).
+* Para rodar os tests
+  ```sh
+  npm run tests
+  ```
+
+## Endpoints
+
+* `[POST]` - http://localhost:{your_port}/offers?userId={user_id}
+  * Acceptance body
+  ```json
+  {
+    quantity: number,
+    walletCoinId: number
+  }
+  ```
+* `[GET]` - http://localhost:{your_port}/offers?page={actual_page}&limit={limit_offers_per_page}
+
+* `[DELETE]` http://localhost:{your_port}/offers/{offer_id}?userId={user_id}
+
+
+## Author
+
+* **Caio Fernando** - *Software Engineer* - [Github](https://github.com/caiofsr)
+
+## Future Improvements
+
+* Aperfeiçoar o sistema para lidar de forma melhorada nome e o token das moedas no endpoint de listagem das ofertas.
+* "Dockerizar" a aplicação inteira para eventuais escalonamentos com Kubernetes.
+* Esclarecer a mensagem de erro do validator do endpoint de criar ofertas.
+* Otimização das queries com adição de index em campos importantes
+* Trocar a geração de id de sequencial para uuid
+* Adicionar logging e telemetria
+
