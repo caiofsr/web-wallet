@@ -3,7 +3,7 @@
   <h3 align="center">Web Wallet</h3>
 
   <p align="center">
-    <a href="https://github.com/caiofsr/web-wallet"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/caiofsr/web-wallet#Endpoints"><strong>Veja a documentação »</strong></a>
     <br/>
     <br/>
   </p>
@@ -11,30 +11,30 @@
 
 
 
-## Table Of Contents
+## Sumário
 
-- [Table Of Contents](#table-of-contents)
-- [Built With](#built-with)
-  - [Data Modelling](#data-modelling)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Sumário](#sumário)
+- [Feito com](#feito-com)
+  - [Modelagem de dados](#modelagem-de-dados)
+- [Passos iniciais](#passos-iniciais)
+  - [Pre-requisitos](#pre-requisitos)
+  - [Instalação](#instalação)
 - [Endpoints](#endpoints)
-- [Author](#author)
-- [Future Improvements](#future-improvements)
+- [Autor](#autor)
+- [Melhorias futuras](#melhorias-futuras)
 
-## Built With
+## Feito com
 
 Esse projeto foi feito com Node.js, NestJS, prisma e postgres. Utilizando da Arquitetura Limpa as pastas de `src` representam algumas camadas utilizadas nesse projeto.
 
-### Data Modelling
-<img src="images/data-modeling.png" alt="Logo">
+### Modelagem de dados
+<img src="images/data-modelling.png" alt="Logo">
 
-## Getting Started
+## Passos iniciais
 
 Para rodar o projeto localmente siga os próximos passos.
 
-### Prerequisites
+### Pre-requisitos
 
 * npm
 
@@ -43,9 +43,9 @@ npm install npm@latest -g
 ```
 
 * docker-compose (opcional)
-Você pode usar uma instância do postgres já instalada no seu computador, só alterar as credencias nos arquivos locais
+Você pode usar uma instância do postgres já instalada no seu computador, só alterar as credencias nos arquivos locais.
 
-### Installation
+### Instalação
 
 1. Instale os pacotes do npm
 
@@ -83,7 +83,7 @@ npx prisma db seed
 npm run start:dev
 ```
 
-* Para rodar os tests
+7. Para rodar os testes
   ```sh
   npm run tests
   ```
@@ -94,20 +94,20 @@ npm run start:dev
   * Acceptance body
   ```json
   {
-    quantity: number,
-    walletCoinId: number
+    "quantity": integer,
+    "walletCoinId": integer
   }
   ```
-* `[GET]` - http://localhost:{your_port}/offers?page={actual_page}&limit={limit_offers_per_page}
+* `[GET]` - http://localhost:{your_port}/offers?page={current_page}&limit={limit_offers_per_page}
 
 * `[DELETE]` http://localhost:{your_port}/offers/{offer_id}?userId={user_id}
 
 
-## Author
+## Autor
 
 * **Caio Fernando** - *Software Engineer* - [Github](https://github.com/caiofsr)
 
-## Future Improvements
+## Melhorias futuras
 
 * Aperfeiçoar o sistema para lidar de forma melhorada nome e o token das moedas no endpoint de listagem das ofertas.
 * "Dockerizar" a aplicação inteira para eventuais escalonamentos com Kubernetes.
@@ -115,4 +115,4 @@ npm run start:dev
 * Otimização das queries com adição de index em campos importantes
 * Trocar a geração de id de sequencial para uuid
 * Adicionar logging e telemetria
-
+* Adicionar um servidor de Swagger para demonstração dos endpoints
