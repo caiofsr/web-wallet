@@ -83,7 +83,7 @@ npx prisma db seed
 npm run start:dev
 ```
 
-* Para rodar os tests
+* Para rodar os testes
   ```sh
   npm run tests
   ```
