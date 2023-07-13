@@ -28,7 +28,7 @@
 Esse projeto foi feito com Node.js, NestJS, prisma e postgres. Utilizando da Arquitetura Limpa as pastas de `src` representam algumas camadas utilizadas nesse projeto.
 
 ### Data Modelling
-<img src="images/data-modeling.png" alt="Logo">
+<img src="images/data-modelling.png" alt="Logo">
 
 ## Getting Started
 
